@@ -16,3 +16,17 @@ export const login = () => {
     type: "SIGN_IN",
   };
 };
+export const add_todo = (msg) => {
+  return {
+    type: "ADD_TODO",
+    payload: msg,
+    id: Math.random(),
+  };
+};
+
+export const delete_todo = (id) => {
+  return {
+    type: "DELETE_TODO",
+    id: id,
+  };
+};
