@@ -6,10 +6,11 @@ import { add_todo, delete_todo } from "../../Actions";
 
 const Todo = () => {
   const dispatch = useDispatch();
+  const todoStateData = useSelector((state) => state.todoReduce.data);
+
   const todoState = useSelector((state) => state.todoReduce);
-  console.log("Todo -> dispatch", dispatch);
-  console.log("Todo -> todoState", todoState);
   const [inputVal, setInputVal] = useState("");
+  console.log("Todo -> inputVal", inputVal);
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -24,7 +25,9 @@ const Todo = () => {
         />
         <button
           onClick={() => {
-            dispatch(add_todo(inputVal));
+            if (inputVal !== "") {
+              dispatch(add_todo(inputVal));
+            }
             setInputVal("");
           }}
         >
@@ -32,7 +35,10 @@ const Todo = () => {
         </button>
       </form>
 
-      <List />
+      {todoStateData &&
+        todoStateData.map((each, i) => {
+          return <List key={each.id} each={each} />;
+        })}
     </div>
   );
 };

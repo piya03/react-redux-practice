@@ -19,7 +19,7 @@ export const login = () => {
 export const add_todo = (msg) => {
   return {
     type: "ADD_TODO",
-    payload: msg,
+    message: msg,
     id: Math.random(),
   };
 };
@@ -27,6 +27,14 @@ export const add_todo = (msg) => {
 export const delete_todo = (id) => {
   return {
     type: "DELETE_TODO",
+    id: id,
+  };
+};
+
+export const edit_todo = (id, msg) => {
+  return {
+    type: "EDIT-TODO",
+    message: msg,
     id: id,
   };
 };
